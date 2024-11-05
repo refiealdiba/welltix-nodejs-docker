@@ -1,0 +1,198 @@
+<div
+    class="container-lg w-full flex justify-between items-center mx-auto bg-[#001939] lg:px-48 px-5 py-4 fixed z-10"
+>
+    <div class="left flex items-center">
+        <h1 class="lg:text-4xl text-xl font-bold color-black md:me-5 me-2">
+            <span class="text-[#fff]">Well</span><span class="text-[#ffde6d]">Tix</span>
+        </h1>
+        <div class="link lg:pt-2 font-semibold">
+            <% if (typeof username !== 'undefined' && username === 'admin') { %>
+            <!-- admin -->
+            <a
+                href="/"
+                class="mx-2 text-[#fff] hover:text-[#ffde6d] ease-in-out duration-300 md:text-base text-sm"
+                >Beranda</a
+            >
+            <a
+                href="/events"
+                class="mx-2 text-[#fff] hover:text-[#ffde6d] ease-in-out duration-300 md:text-base text-sm"
+                >Event</a
+            >
+            <a
+                href="/transaksiAll"
+                class="mx-2 text-[#fff] hover:text-[#ffde6d] ease-in-out duration-300 md:text-base text-sm"
+                >Transaksi</a
+            >
+            <% } else { %>
+            <!-- user -->
+            <a
+                href="/"
+                class="md:mx-2 mx-1 text-[#fff] hover:text-[#ffde6d] ease-in-out duration-300 md:text-base text-sm"
+                >Beranda</a
+            >
+            <a
+                href="/history"
+                class="md:mx-2 mx-1 text-[#fff] hover:text-[#ffde6d] ease-in-out duration-300 md:text-base text-sm"
+                >History</a
+            >
+            <% } %>
+        </div>
+    </div>
+    <div class="right">
+        <% if (!username) { %>
+        <!-- Jika belum login -->
+        <a
+            href="/login"
+            class="mx-2 text-[#fff] hover:text-[#ffde6d] ease-in-out duration-300 md:text-base text-sm font-semibold"
+            >Login</a
+        >
+        <a
+            href="/register"
+            class="mx-2 text-[#001939] hover:brightness-75 ease-in-out duration-300 md:text-base text-sm font-semibold bg-[#ffde6d] px-3 py-1 rounded-xl"
+            >Register</a
+        >
+        <% } else { %>
+        <!-- Jika sudah login -->
+        <button
+            id="dropdownDefaultButton"
+            class="inline-flex items-center font-semibold text-[#fff]"
+            type="button"
+        >
+            <svg
+                width="25px"
+                height="25px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <circle cx="12" cy="6" r="4" fill="#fff"></circle>
+                <path
+                    d="M20 17.5C20 19.9853 20 22 12 22C4 22 4 19.9853 4 17.5C4 15.0147 7.58172 13 12 13C16.4183 13 20 15.0147 20 17.5Z"
+                    fill="#fff"
+                ></path>
+            </svg>
+            <%= username %>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+            id="dropdown"
+            class="absolute z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+        >
+            <ul
+                class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownDefaultButton"
+            >
+                <li>
+                    <a
+                        href="/logout"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >Sign out</a
+                    >
+                </li>
+            </ul>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<main>
+    <!-- slider -->
+    <div class="container mx-auto pt-20">
+        <div
+            class="splide"
+            data-splide='{"type":"loop", "heightRatio": 0.31, "cover": true, "autoplay": true, "pauseOnHover": true, "snap": true, "speed": 500, "easing": "cubic-bezier(0.25, 1, 0.5, 1)", "arrows": false}'
+        >
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <img src="img/banner1.png" class="splide__slide" />
+                    <img src="img/banner2.png" class="splide__slide" />
+                    <img src="img/banner3.png" class="splide__slide" />
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container mx-auto">
+        <h1 class="text-center font-bold text-3xl mt-7 text-[#001939]">Daftar Event</h1>
+        <div class="px-10 py-5 flex flex-wrap gap-5 items-stretch justify-center">
+            <% if (events.length > 0) { %> <% events.forEach(event => { %>
+            <a class="hover:scale-105 ease-in-out duration-300" href="/order/<%= event.id %>">
+                <div class="w-[350px] border rounded-lg overflow-hidden shadow-md">
+                    <img
+                        class="card-img shadow-inner"
+                        src="data:image/jpeg;base64,<%= event.poster %>"
+                        alt=""
+                    />
+                    <div class="desc px-3 pt-5 pb-5 flex justify-between">
+                        <div class="left">
+                            <span class="flex mb-0">
+                                <svg
+                                    width="15px"
+                                    height="15px"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="#000000"
+                                >
+                                    <circle
+                                        cx="12"
+                                        cy="10"
+                                        r="3"
+                                        stroke="#001939"
+                                        stroke-width="1.5"
+                                    ></circle>
+                                </svg>
+                                <p class="text-xs font-semibold text-slate-500">
+                                    <%= event.lokasi %>
+                                </p>
+                            </span>
+                            <p class="font-bold text-2xl text-[#001939]"><%= event.nama_event %></p>
+                            <p class="font-bold text-lg text-[#ccb969]">Rp <%= event.harga %></p>
+                            <p class="font-semibold text-sm text-slate-500">
+                                Stok: <%= event.stok %>
+                            </p>
+                        </div>
+                        <div class="right">
+                            <div
+                                class="bg-[#001939] py-2 px-4 leading-tight font-bold rounded-lg text-right"
+                            >
+                                <p class="text-xs text-[#ffde6d] leading-tight">
+                                    <%= new Date(event.tgl).toLocaleString('default', { month:
+                                    'long' }) %>
+                                </p>
+                                <p class="text-2xl text-[#ffde6d] leading-tight">
+                                    <%= new Date(event.tgl).getDate() %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% }); %> <% } else { %>
+            <p>Tidak Ada Data</p>
+            <% } %>
+        </div>
+    </div>
+</main>
+<!-- slider library -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<script>
+    const elms = document.getElementsByClassName("splide");
+    for (var i = 0; i < elms.length; i++) {
+        new Splide(elms[i]).mount();
+    }
+
+    Splide.defaults = {
+        type: "loop",
+        perPage: 2,
+    };
+</script>
+<script>
+    const dropButton = document.querySelector("#dropdownDefaultButton");
+    const dropMenu = document.querySelector("#dropdown");
+
+    dropButton.addEventListener("click", () => {
+        dropMenu.classList.toggle("hidden");
+    });
+</script>

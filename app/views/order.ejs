@@ -1,0 +1,206 @@
+<div class="container-lg pt-20">
+    <h1 class="font-bold text-3xl mt-7 text-[#001939] text-center mb-3">Pemesanan</h1>
+    <div class="container mx-auto border py-9 w-[500px] bg-gray-100 rounded-xl shadow-lg">
+        <img src="data:image/jpeg;base64,<%= event.poster %>" class="w-[250px] mx-auto" />
+        <div class="mx-auto">
+            <p class="font-bold text-2xl text-[#001939] text-center my-2">
+                <%= event.nama_event %>
+            </p>
+            <span class="flex mb-0 items-center justify-center">
+                <svg
+                    width="15px"
+                    height="15px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke="#000000"
+                >
+                    <path
+                        opacity="0.5"
+                        d="M4 10.1433C4 5.64588 7.58172 2 12 2C16.4183 2 20 5.64588 20 10.1433C20 14.6055 17.4467 19.8124 13.4629 21.6744C12.5343 22.1085 11.4657 22.1085 10.5371 21.6744C6.55332 19.8124 4 14.6055 4 10.1433Z"
+                        stroke="#001939"
+                        stroke-width="1.5"
+                    ></path>
+                    <circle cx="12" cy="10" r="3" stroke="#001939" stroke-width="1.5"></circle>
+                </svg>
+                <p class="text-xs font-semibold text-slate-500"><%= event.lokasi %></p>
+            </span>
+            <div class="px-10 mt-5">
+                <form action="/transaksi" method="POST">
+                    <input type="hidden" name="id_user" value="<%= user.id %>" />
+                    <input type="hidden" name="id_event" value="<%= event.id %>" />
+                    <div class="flex justify-between my-1">
+                        <p class="text-lg font-bold text-[#001939]">Harga</p>
+                        <input
+                            type="number"
+                            name="harga"
+                            class="ps-3 text-slate-500 text-base text-end font-semibold bg-transparent outline-none"
+                            value="<%= event.harga %>"
+                            readonly
+                        />
+                    </div>
+                    <div class="flex justify-between">
+                        <label
+                            for="counter-input"
+                            class="block mb-1 text-lg font-bold text-[#001939]"
+                            >Jumlah Tiket</label
+                        >
+                        <div class="relative flex items-center ps-3">
+                            <button
+                                type="button"
+                                id="decrement-button"
+                                class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-5 w-5"
+                            >
+                                <svg
+                                    class="w-2.5 h-2.5 text-gray-900"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 18 2"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M1 1h16"
+                                    />
+                                </svg>
+                            </button>
+                            <input
+                                type="text"
+                                id="counter-input"
+                                name="jumlah"
+                                class="flex-shrink-0 mx-2 bg-transparent text-sm font-normal text-center text-red-900 outline-none"
+                                value="1"
+                                required
+                                readonly
+                            />
+                            <button
+                                type="button"
+                                id="increment-button"
+                                class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-5 w-5"
+                            >
+                                <svg
+                                    class="w-2.5 h-2.5 text-gray-900"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 18 18"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 1v16M1 9h16"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <label for="default" class="block mb-2 text-lg font-bold text-[#001939]"
+                            >Pembayaran</label
+                        >
+                        <select
+                            id="default"
+                            name="pembayaran"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg px-2.5 py-1"
+                        >
+                            <option value="BCA">BCA</option>
+                            <option value="Dana">Dana</option>
+                            <option value="Gopay">Gopay</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-between my-1">
+                        <p class="text-lg font-bold text-[#001939]">Biaya Admin</p>
+                        <input
+                            type="text"
+                            id="biaya-admin"
+                            class="ps-3 text-slate-500 text-base text-end font-semibold bg-transparent outline-none"
+                            value="5.000"
+                            readonly
+                        />
+                    </div>
+                    <div
+                        class="flex justify-between items-center bg-[#001939] mt-5 ps-8 pe-4 py-3 box-border rounded-full"
+                    >
+                        <div class="text-lg font-bold text-[#ffde6d] flex items-center">
+                            <label for="total">Total:</label>
+                            <input
+                                type="text"
+                                id="total"
+                                name="total"
+                                class="ps-2 w-40 bg-transparent outline-none"
+                                value="<%= (event.harga + 5000) %>"
+                                readonly
+                            />
+                        </div>
+                        <div
+                            class="px-5 py-2 rounded-full font-bold bg-slate-300 text-slate-500"
+                            id="containerSetuju"
+                        >
+                            <button type="submit" id="submit-button" disabled>Checkout</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="flex justify-center items-center">
+                    <p class="text-center text-slate-500 font-semibold mt-5 text-xs">
+                        Dengan mencentang box ini maka anda menyutujui
+                        <a href="/term" class="text-[#001939] font-bold">S&K</a> yang berlaku
+                    </p>
+                    <input type="checkbox" name="saya_setuju" id="saya_setuju" class="ms-2 mt-6" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const term = document.getElementById("saya_setuju");
+    const subButton = document.getElementById("submit-button");
+    const containerSetuju = document.getElementById("containerSetuju");
+
+    term.addEventListener("change", () => {
+        subButton.disabled = !term.checked;
+        subButton.classList.toggle("grayscale", !term.checked);
+
+        containerSetuju.classList.toggle("bg-[#ffde6d]", term.checked);
+        containerSetuju.classList.toggle("text-[#001939]", term.checked);
+        containerSetuju.classList.toggle("bg-slate-300", !term.checked);
+        containerSetuju.classList.toggle("text-slate-500", !term.checked);
+    });
+</script>
+
+<script>
+    const decrementButton = document.getElementById("decrement-button");
+    const incrementButton = document.getElementById("increment-button");
+    const counterInput = document.getElementById("counter-input");
+    const totalPriceInput = document.getElementById("total");
+    const adminFeeInput = document.getElementById("biaya-admin");
+    const pricePerItem = <%= event.harga %>; // Perbaikan bagian ini
+    const adminFee = 5000;
+
+    decrementButton.addEventListener("click", () => {
+        let currentValue = parseInt(counterInput.value);
+        if (currentValue > 1) {
+            counterInput.value = currentValue - 1;
+            updateTotal();
+        }
+    });
+
+    incrementButton.addEventListener("click", () => {
+        let currentValue = parseInt(counterInput.value);
+        counterInput.value = currentValue + 1;
+        updateTotal();
+    });
+
+    function updateTotal() {
+        let quantity = parseInt(counterInput.value);
+        let totalAdminFee = quantity * adminFee;
+        let total = quantity * pricePerItem + totalAdminFee;
+        totalPriceInput.value = total;
+        adminFeeInput.value = totalAdminFee.toLocaleString("id-ID");
+    }
+</script>

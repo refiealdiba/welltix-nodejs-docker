@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tambahkan link CSS atau Tailwind CSS sesuai kebutuhan -->
+    </head>
+    <body>
+        <div
+            class="container-lg w-full min-h-screen flex justify-center items-center bg-[url('img/loginBg.jpg')] bg-cover bg-center"
+        >
+            <div class="mx-auto py-7 w-[400px]">
+                <h1 class="text-center font-bold text-5xl mb-3 text-[#001939]">
+                    <span class="text-[#001939]">Well</span><span class="text-[#ffde6d]">Tix</span>
+                </h1>
+                <p class="text-sm text-center leading-[5px] text-[#ffde6d]">
+                    The place where you can discover
+                </p>
+                <p class="text-sm text-center text-[#ffde6d]">extraordinary experiences.</p>
+                <div class="p-5 pb-3 bg-[#001939] mt-3 rounded-lg shadow-lg">
+                    <form action="/login" method="POST" class="flex flex-col py-5 px-6">
+                        <div class="relative mb-3">
+                            <input
+                                type="text"
+                                name="username"
+                                id="floating_filled"
+                                class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" "
+                            />
+                            <label
+                                for="floating_filled"
+                                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                                >Username</label
+                            >
+                        </div>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                name="password"
+                                id="floating_filled"
+                                class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" "
+                            />
+                            <label
+                                for="floating_filled"
+                                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                                >Password</label
+                            >
+                        </div>
+                        <button
+                            type="submit"
+                            name="Login"
+                            class="bg-[#ffde6d] text-[#001939] rounded-full mx-auto px-7 py-1 mt-5 font-bold"
+                        >
+                            Login
+                        </button>
+                    </form>
+                </div>
+                <p class="text-center text-white text-sm my-2">
+                    Don't have an account?
+                    <a class="text-[#001939] font-bold" href="index.php?page=register">Register</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

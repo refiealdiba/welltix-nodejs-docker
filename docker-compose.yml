@@ -1,0 +1,38 @@
+services:
+    app1:
+        build: .
+        ports:
+            - "3000:3000"
+        environment:
+            DB_HOST: "mysqldb1"
+            DB_USER: "root"
+            DB_PASSWORD: "123"
+            DB_NAME: "welltix"
+        depends_on:
+            - mysqldb1
+        volumes:
+            - ./app:/usr/src/app
+        networks:
+            - net1
+    mysqldb1:
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "123"
+            MYSQL_DATABASE: "welltix"
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql_data:/var/lib/mysql
+        networks:
+            - net1
+    phpadmin1:
+        image: phpmyadmin
+        environment:
+            PMA_HOST: mysqldb1
+        ports:
+            - "8080:80"
+        networks:
+            - net1
+networks:
+    net1:
+        driver: bridge

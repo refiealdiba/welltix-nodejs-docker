@@ -1,0 +1,40 @@
+<h1 class="font-bold text-3xl pt-28 text-[#001939] text-center mb-7">Daftar Transaksi</h1>
+<% histories.forEach(history => { %>
+<div
+    class="container bg-slate-100 rounded-xl flex mx-auto px-10 border py-10 mb-5 w-[800px] shadow"
+>
+    <div>
+        <img src="data:image/jpeg;base64,<%= history.poster %>" class="w-[200px]" />
+    </div>
+    <div class="ps-7 w-full">
+        <div class="flex justify-between">
+            <h1 class="font-bold">ID Transaksi:</h1>
+            <span class="font-semibold text-slate-500"><%= history.id %></span>
+        </div>
+        <div class="flex justify-between">
+            <h1 class="font-bold">User:</h1>
+            <span class="font-semibold text-slate-500"><%= history.id_user %></span>
+        </div>
+        <div class="flex justify-between">
+            <h1 class="font-bold">Event:</h1>
+            <span class="font-semibold text-slate-500"><%= history.id_event %></span>
+        </div>
+        <div class="flex justify-between">
+            <h1 class="font-bold">Jumlah:</h1>
+            <span class="font-semibold text-slate-500"><%= history.jumlah %></span>
+        </div>
+        <div class="flex justify-between">
+            <h1 class="font-bold">Total:</h1>
+            <span class="font-semibold text-slate-500"><%= history.total %></span>
+        </div>
+        <div class="flex justify-between">
+            <h1 class="font-bold">Pembayaran:</h1>
+            <span class="font-semibold text-slate-500"><%= history.pembayaran %></span>
+        </div>
+        <div class="flex justify-between mb-5">
+            <h1 class="font-bold">Status:</h1>
+            <span class="font-semibold text-slate-500"><%= history.status %></span>
+        </div>
+    </div>
+</div>
+<% }) %>

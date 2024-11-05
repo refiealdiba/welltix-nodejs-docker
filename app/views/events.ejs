@@ -1,0 +1,74 @@
+<!-- Header (jika ada) -->
+<div class="container-lg pt-20 pb-10">
+    <h1 class="text-center font-bold text-3xl mt-7 text-[#001939] mb-10">Daftar Event</h1>
+    <div class="w-[900px] mx-auto mb-4">
+        <a
+            href="/events/add"
+            class="text-center font-semibold text-base text-[#ffde6d] w-full bg-[#001939] text-white px-5 py-2 rounded-full"
+        >
+            Tambah Event</a
+        >
+    </div>
+    <% if (events.length > 0) { %>
+    <div class="relative w-[1000px] overflow-x-auto shadow-md sm:rounded-lg mx-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead
+                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            >
+                <tr>
+                    <th scope="col" class="px-6 py-3">No.</th>
+                    <th scope="col" class="px-6 py-3">Poster</th>
+                    <th scope="col" class="px-6 py-3">Nama Event</th>
+                    <th scope="col" class="px-6 py-3">Lokasi</th>
+                    <th scope="col" class="px-6 py-3">Tanggal</th>
+                    <th scope="col" class="px-6 py-3">Harga</th>
+                    <th scope="col" class="px-6 py-3">Stok</th>
+                    <th scope="col" class="px-6 py-3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% events.forEach((event, index) => { %>
+                <tr class="odd:bg-slate-100 even:bg-gray-50">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <%= index + 1 %>
+                    </th>
+                    <td class="px-6 py-4">
+                        <img src="data:image/jpeg;base64,<%= event.poster %>" class="w-[100px]" />
+                    </td>
+                    <td class="px-6 py-4"><%= event.nama_event %></td>
+                    <td class="px-6 py-4"><%= event.lokasi %></td>
+                    <td class="px-6 py-4"><%= event.tgl %></td>
+                    <td class="px-6 py-4"><%= event.harga %></td>
+                    <td class="px-6 py-4"><%= event.stok %></td>
+                    <td class="px-6 py-4">
+                        <a
+                            href="/events/edit/<%= event.id %>"
+                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                            >Edit</a
+                        >
+                        <form action="/events?_method=DELETE" method="POST">
+                            <input type="hidden" name="id" value="<%= event.id %>" />
+                            <button
+                                type="submit"
+                                class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                onclick="return confirm('yakin ingin hapus?')"
+                            >
+                                Delete
+                            </button>
+                        </form>
+                        <!-- <a
+                            href="/events/delete/<%= event.id %>"
+                            class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                            >Delete</a
+                        > -->
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <% } else { %>
+    <p>Tidak Ada Data</p>
+    <% } %>
+</div>
+<!-- Footer (jika ada) -->
